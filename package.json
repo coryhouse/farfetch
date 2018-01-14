@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css":
-      "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "coverage": "react-scripts test --env=jsdom --coverage ",
+    "open:coverage": "npm run coverage && opn ./coverage/lcov-report/index.html",
     "cypress": "cypress open",
     "eject": "react-scripts eject"
   },
@@ -32,6 +32,7 @@
     "mockdate": "^2.0.2",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
+    "opn-cli": "^3.1.0",
     "react-test-renderer": "^16.2.0",
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-mock-store": "^1.4.0"
