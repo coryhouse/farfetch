@@ -19,6 +19,7 @@ exports[`<FuelSavingsPage /> should match snapshot 1`] = `
           <td>
             <input
               className="small"
+              id="newMpg"
               name="newMpg"
               onChange={[Function]}
               placeholder={undefined}
@@ -38,6 +39,7 @@ exports[`<FuelSavingsPage /> should match snapshot 1`] = `
           <td>
             <input
               className="small"
+              id="tradeMpg"
               name="tradeMpg"
               onChange={[Function]}
               placeholder={undefined}
@@ -57,6 +59,7 @@ exports[`<FuelSavingsPage /> should match snapshot 1`] = `
           <td>
             <input
               className="small"
+              id="newPpg"
               name="newPpg"
               onChange={[Function]}
               placeholder={undefined}
@@ -76,6 +79,7 @@ exports[`<FuelSavingsPage /> should match snapshot 1`] = `
           <td>
             <input
               className="small"
+              id="tradePpg"
               name="tradePpg"
               onChange={[Function]}
               placeholder={undefined}
@@ -95,6 +99,7 @@ exports[`<FuelSavingsPage /> should match snapshot 1`] = `
           <td>
             <input
               className="small"
+              id="milesDriven"
               name="milesDriven"
               onChange={[Function]}
               placeholder={undefined}
@@ -103,6 +108,7 @@ exports[`<FuelSavingsPage /> should match snapshot 1`] = `
             />
             miles per
             <select
+              id="milesDrivenTimeframe"
               name="milesDrivenTimeframe"
               onChange={[Function]}
               value="week"
