@@ -12,6 +12,7 @@
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "coverage": "react-scripts test --env=jsdom --coverage ",
+    "cypress": "cypress open",
     "eject": "react-scripts eject"
   },
   "dependencies": {
@@ -25,6 +26,7 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "cypress": "^1.4.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "mockdate": "^2.0.2",
