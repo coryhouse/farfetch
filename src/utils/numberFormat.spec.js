@@ -11,16 +11,20 @@ describe("Number Formatter", () => {
       expect(getCurrencyFormattedNumber(5.5)).toEqual("$5.50");
     });
 
-    it("returns $1.00 when passed 1", () => {
-      expect(getCurrencyFormattedNumber(5.5)).toEqual("$1.00");
+    it("returns $1 when passed 1.0", () => {
+      expect(getCurrencyFormattedNumber(1.0)).toEqual("$1");
     });
 
-    it.only("returns $0.50 when passed 0.5", () => {
+    it("returns $0.50 when passed 0.5", () => {
       expect(getCurrencyFormattedNumber(0.5)).toEqual("$0.50");
     });
 
     it("returns empty string if passed an empty string", () => {
       expect(getCurrencyFormattedNumber("")).toEqual("");
+    });
+
+    it("returns empty string if passed null", () => {
+      expect(getCurrencyFormattedNumber(null)).toEqual("");
     });
   });
 
@@ -49,8 +53,12 @@ describe("Number Formatter", () => {
       expect(getFormattedNumber(0)).toEqual(0);
     });
 
-    it("returns empty null if passed empty string", () => {
+    it("returns null if passed empty string", () => {
       expect(getFormattedNumber("")).toEqual(null);
+    });
+
+    it("returns null if passed an invalid int", () => {
+      expect(getFormattedNumber("a")).toEqual(null);
     });
   });
 });

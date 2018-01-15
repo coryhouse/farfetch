@@ -19,7 +19,6 @@ export function getFormattedNumber(value) {
 
   let roundedValue = roundNumber(value, 2); // round if more than 2 decimal points
   roundedValue = roundedValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // add commas for 1,000's. RegEx from http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-  console.log("rounded " + value + " to " + roundedValue);
   const roundedValueContainsDecimalPlace = roundedValue.indexOf(".") !== -1;
 
   if (roundedValueContainsDecimalPlace) {
