@@ -1,0 +1,23 @@
+{
+  "name": "ps-react",
+  "author": {
+    "name": "Cory House",
+    "email": "cory@reactjsconsulting.com",
+    "url": "http://reactjsconsulting.com/"
+  },
+  "version": "1.0.0",
+  "main": "./index.js",
+  "keywords": [
+    "components",
+    "react",
+    "react-component",
+    "toolkit",
+    "pluralsight"
+  ],
+  "homepage": "http://coryhouse.github.io/ps-react/",
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "styled-components": "1.4.5"
+  }
+}
