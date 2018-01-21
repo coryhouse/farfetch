@@ -13,7 +13,8 @@ export function save(fuelSavings) {
       newPpg: parseInt(fuelSavings.newPpg, 10),
       tradePpg: parseInt(fuelSavings.tradePpg, 10),
       milesDriven: parseInt(fuelSavings.milesDriven, 10),
-      milesDrivenTimeframe: fuelSavings.milesDrivenTimeframe
+      milesDrivenTimeframe: fuelSavings.milesDrivenTimeframe,
+      dateModified: new Date()
     })
     .then(onSuccess, onError);
 }
