@@ -142,11 +142,6 @@ exports[`<FuelSavingsPage /> should match snapshot 1`] = `
       </tbody>
     </table>
     <hr />
-    <input
-      onClick={[Function]}
-      type="submit"
-      value="Save"
-    />
   </div>
 </div>
 `;
