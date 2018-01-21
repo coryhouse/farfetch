@@ -6,6 +6,7 @@ import { create } from "react-test-renderer";
 import ConnectedFuelSavingsPage, { FuelSavingsPage } from "./FuelSavingsPage";
 import FuelSavingsForm from "./FuelSavingsForm";
 import initialState from "../reducers/initialState";
+import { necessaryDataIsProvidedToCalculateSavings } from "../utils/fuelSavings";
 
 describe("<FuelSavingsPage />", () => {
   const actions = {
@@ -25,19 +26,30 @@ describe("<FuelSavingsPage />", () => {
   });
 
   it("calls saveFuelSavings upon clicking save", () => {
+    const fuelSavings = {
+      newMpg: 21,
+      tradeMpg: 21,
+      newPpg: 2,
+      tradePpg: 4,
+      milesDriven: 45950,
+      milesDrivenTimeframe: "week",
+      displayResults: true,
+      necessaryDataIsProvidedToCalculateSavings: true,
+      savings: {
+        monthly: 0,
+        annual: 0,
+        threeYear: 0
+      }
+    };
+
     const wrapper = mount(
-      <FuelSavingsPage
-        actions={actions}
-        fuelSavings={initialState.fuelSavings}
-      />
+      <FuelSavingsPage actions={actions} fuelSavings={fuelSavings} />
     );
 
-    const save = wrapper.find('input[type="submit"]');
+    const save = wrapper.find("#save");
     save.simulate("click");
 
-    expect(actions.saveFuelSavings).toHaveBeenCalledWith(
-      initialState.fuelSavings
-    );
+    expect(actions.saveFuelSavings).toHaveBeenCalledWith(fuelSavings);
   });
 
   it("calls calculateFuelSavings upon changing a field", () => {

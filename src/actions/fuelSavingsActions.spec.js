@@ -1,11 +1,14 @@
-import * as ActionTypes from '../constants/actionTypes';
-import * as ActionCreators from './fuelSavingsActions';
+import * as actionTypes from "../constants/actionTypes";
+import * as actions from "./fuelSavingsActions";
+import initialState from "../reducers/initialState";
+import axios from "axios";
+import thunk from "redux-thunk";
+import configureMockStore from "redux-mock-store";
+import MockAdapter from "axios-mock-adapter";
+import MockDate from "mockdate";
+import { getFormattedDateTime } from "../utils/dates";
 
-import MockDate from 'mockdate';
-
-import {getFormattedDateTime} from '../utils/dates';
-
-describe('Actions', () => {
+describe("Actions", () => {
   let dateModified;
   beforeAll(() => {
     MockDate.set(new Date());
@@ -15,14 +18,14 @@ describe('Actions', () => {
 
   const appState = {
     newMpg: 20,
-    tradeMpg: 10,
-    newPpg: 1.50,
-    tradePpg: 1.50,
+    tradeMpg: 20,
+    newPpg: 1.5,
+    tradePpg: 1.5,
     milesDriven: 100,
-    milesDrivenTimeframe: 'week',
-    displayResults: false,
+    milesDrivenTimeframe: "week",
+    displayResults: true,
     dateModified: null,
-    necessaryDataIsProvidedToCalculateSavings: false,
+    necessaryDataIsProvidedToCalculateSavings: true,
     savings: {
       monthly: 0,
       annual: 0,
@@ -30,28 +33,46 @@ describe('Actions', () => {
     }
   };
 
-  it('should create an action to save fuel savings', () => {
-    const dispatch = jest.fn();
-    const expected = {
-      type: ActionTypes.SAVE_FUEL_SAVINGS,
-      dateModified,
-      settings: appState
+  it("should create SAVE_FUEL_SAVINGS_SUCCESS when saving is complete", () => {
+    const middlewares = [thunk];
+    const mockStore = configureMockStore(middlewares);
+
+    const mockResponse = {
+      newMpg: 1,
+      tradeMpg: 1,
+      newPpg: 1,
+      tradePpg: 1,
+      milesDriven: 100,
+      milesDrivenTimeframe: "week",
+      dateModified: new Date()
     };
 
-    // we expect this to return a function since it is a thunk
-    expect(typeof (ActionCreators.saveFuelSavings(appState))).toEqual('function');
-    // then we simulate calling it with dispatch as the store would do
-    ActionCreators.saveFuelSavings(appState)(dispatch);
-    // finally assert that the dispatch was called with our expected action
-    expect(dispatch).toBeCalledWith(expected);
+    // This sets the mock adapter on the default instance
+    var mock = new MockAdapter(axios);
+    mock.onPost().reply(201, mockResponse);
+
+    const expectedActions = [
+      { type: actionTypes.SAVE_FUEL_SAVINGS_REQUEST },
+      {
+        type: actionTypes.SAVE_FUEL_SAVINGS_SUCCESS,
+        settings: mockResponse
+      }
+    ];
+
+    const store = mockStore({ fuelSavings: initialState });
+
+    return store.dispatch(actions.saveFuelSavings(appState)).then(() => {
+      // return of async action
+      expect(store.getActions()).toEqual(expectedActions);
+    });
   });
 
-  it('should create an action to calculate fuel savings', () => {
-    const fieldName = 'newMpg';
+  it("should create an action to calculate fuel savings", () => {
+    const fieldName = "newMpg";
     const value = 100;
-    const actual = ActionCreators.calculateFuelSavings(appState, fieldName, value);
+    const actual = actions.calculateFuelSavings(appState, fieldName, value);
     const expected = {
-      type: ActionTypes.CALCULATE_FUEL_SAVINGS,
+      type: actionTypes.CALCULATE_FUEL_SAVINGS,
       dateModified,
       settings: appState,
       fieldName,
