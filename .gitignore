@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# generated mock API data
+src/api/db.json
