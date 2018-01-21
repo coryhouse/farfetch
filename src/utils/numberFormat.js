@@ -2,7 +2,7 @@ import { roundNumber } from "./math";
 
 export function getCurrencyFormattedNumber(value) {
   if (!value) {
-    return "";
+    return "$0";
   }
 
   return "$" + getFormattedNumber(value); // eslint-disable-line prefer-template

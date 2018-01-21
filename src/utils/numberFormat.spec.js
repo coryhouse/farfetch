@@ -19,12 +19,12 @@ describe("Number Formatter", () => {
       expect(getCurrencyFormattedNumber(0.5)).toEqual("$0.50");
     });
 
-    it("returns empty string if passed an empty string", () => {
-      expect(getCurrencyFormattedNumber("")).toEqual("");
+    it("returns $0 if passed an empty string", () => {
+      expect(getCurrencyFormattedNumber("")).toEqual("$0");
     });
 
-    it("returns empty string if passed null", () => {
-      expect(getCurrencyFormattedNumber(null)).toEqual("");
+    it("returns $0 if passed null", () => {
+      expect(getCurrencyFormattedNumber(null)).toEqual("$0");
     });
   });
 
