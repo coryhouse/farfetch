@@ -99,7 +99,7 @@ const FuelSavingsForm = ({ fuelSavings, onSaveClick, onChange }) => (
     {fuelSavings.necessaryDataIsProvidedToCalculateSavings && (
       <div>
         <FuelSavingsResults savings={fuelSavings.savings} />
-        <input type="submit" value="Save" onClick={onSaveClick} />
+        <input type="submit" id="save" value="Save" onClick={onSaveClick} />
       </div>
     )}
   </div>
