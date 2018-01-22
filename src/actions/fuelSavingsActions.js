@@ -33,6 +33,6 @@ export function calculateFuelSavings(settings, fieldName, value) {
 export function saveFuelSavings(settings) {
   return function(dispatch) {
     dispatch(saveFuelSavingsRequest());
-    save(settings).then(results => saveFuelSavingsSuccess(results));
+    return save(settings).then(results => saveFuelSavingsSuccess(results));
   };
 }
