@@ -30,6 +30,7 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.11.0",
     "cypress": "^1.4.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
