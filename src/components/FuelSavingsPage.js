@@ -6,7 +6,16 @@ import * as actions from "../actions/fuelSavingsActions";
 import FuelSavingsForm from "./FuelSavingsForm";
 
 export class FuelSavingsPage extends React.Component {
+  state = {
+    saveCompleted: false
+  };
+
+  setTheState = (state, props) {
+    return { saveCompleted: !prevState.saveCompleted };
+  }
+
   saveFuelSavings = () => {
+    this.setState();
     this.props.actions.saveFuelSavings(this.props.fuelSavings);
   };
 
@@ -25,6 +34,7 @@ export class FuelSavingsPage extends React.Component {
           onSaveClick={this.saveFuelSavings}
           onChange={this.calculateFuelSavings}
           fuelSavings={this.props.fuelSavings}
+          saveCompleted={this.state.saveCompleted}
         />
       </div>
     );
