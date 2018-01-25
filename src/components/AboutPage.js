@@ -6,7 +6,9 @@ import "../styles/about-page.css";
 const AboutPage = () => {
   return (
     <div>
-      <h2 className="alt-header">About</h2>
+      <h2 id="about-header" className="alt-header">
+        About
+      </h2>
       <p>
         This is an example app using React with create-react-app, but enhanced
         with:

@@ -33,4 +33,15 @@ describe("Fuel Savings", () => {
     // Or, add this to print log messages in the command log.
     // cy.log('message here')
   });
+
+  it("should display save confirmation when you click save", () => {
+    cy.get("#newMpg").type(30);
+    cy.get("#tradeMpg").type(30);
+    cy.get("#newPpg").type(3.3);
+    cy.get("#tradePpg").type(3.3);
+    cy.get("#milesDriven").type(10000);
+    cy.get("#milesDrivenTimeframe").select("year");
+    cy.get("#save").click();
+    cy.get("#saveCompleted").should("exist");
+  });
 });

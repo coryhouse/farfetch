@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
+import { create } from "react-test-renderer";
 import FuelSavingsForm from "./FuelSavingsForm";
 import FuelSavingsTextInput from "./FuelSavingsTextInput";
 import FuelSavingsResults from "./FuelSavingsResults";
@@ -202,5 +203,29 @@ describe("<FuelSavingsForm />", () => {
     expect(onChange).not.toBeCalled();
     wrapper.find("select").simulate("change", changeEvent);
     expect(onChange).toBeCalledWith(changeEvent);
+  });
+
+  it("should display save button when saveCompleted is true", () => {
+    const tree = create(
+      <FuelSavingsForm
+        onChange={jest.fn()}
+        onSaveClick={jest.fn()}
+        fuelSavings={getFuelSavings()}
+        saveCompleted
+      />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it("should hide save button when saveCompleted is false", () => {
+    const tree = create(
+      <FuelSavingsForm
+        fuelSavings={getFuelSavings()}
+        onChange={jest.fn()}
+        onSaveClick={jest.fn()}
+        saveCompleted={false}
+      />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });

@@ -4,7 +4,12 @@ import FuelSavingsResults from "./FuelSavingsResults";
 import FuelSavingsTextInput from "./FuelSavingsTextInput";
 import { fuelSavings } from "../types";
 
-const FuelSavingsForm = ({ fuelSavings, onSaveClick, onChange }) => (
+const FuelSavingsForm = ({
+  fuelSavings,
+  onSaveClick,
+  onChange,
+  saveCompleted
+}) => (
   <div>
     <h2>Fuel Savings Analysis</h2>
     <table>
@@ -102,6 +107,8 @@ const FuelSavingsForm = ({ fuelSavings, onSaveClick, onChange }) => (
         <input type="submit" id="save" value="Save" onClick={onSaveClick} />
       </div>
     )}
+
+    {saveCompleted && <div id="saveCompleted">Saved! 🎉😎👍</div>}
   </div>
 );
 
